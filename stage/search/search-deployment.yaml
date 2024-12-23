@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: search-service
-          image: localhost:5000/search-service:latest
+          image: localhost:5000/search-service:stage
           imagePullPolicy: Always
           ports:
             - containerPort: 8080

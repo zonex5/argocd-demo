@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: library-service
-          image: localhost:5000/library-service:latest
+          image: localhost:5000/library-service:stage
           imagePullPolicy: Always
           ports:
             - containerPort: 8080

@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: sales-service
-          image: localhost:5000/sales-service:latest
+          image: localhost:5000/sales-service:stage
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
