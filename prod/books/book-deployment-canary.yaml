@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: book-service
-          image: localhost:5000/book-service:rc1
+          image: localhost:5000/book-service:stage
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
