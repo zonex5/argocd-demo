@@ -4,10 +4,8 @@ metadata:
   name: search-service
   namespace: ms-prod
 spec:
-  type: NodePort
   ports:
     - port: 80
       targetPort: 8080
-      nodePort: 30083
   selector:
     app: search-service

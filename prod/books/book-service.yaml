@@ -4,10 +4,8 @@ metadata:
   name: book-service
   namespace: ms-prod
 spec:
-  type: NodePort
   ports:
     - port: 80
       targetPort: 8080
-      nodePort: 30080
   selector:
     app: book-service
