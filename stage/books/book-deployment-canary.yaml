@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: book-service-canary
+  namespace: ms-stage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: book-service
+      version: canary
+  template:
+    metadata:
+      labels:
+        app: book-service
+        version: canary
+    spec:
+      containers:
+        - name: book-service
+          image: localhost:5000/book-service:rc1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://postgres-books-svc.postgres.svc.cluster.local:5432/db_books
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: database-secret
+                  key: POSTGRES_USER
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: database-secret
+                  key: POSTGRES_PASSWORD
+          resources:
+            requests:
+              memory: "128Mi"
+            limits:
+              cpu: "200m"
+              memory: "256Mi"
