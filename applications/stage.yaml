@@ -6,17 +6,17 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/zonex5/library-argocd.git
+    repoURL: https://github.com/zonex5/argocd-demo.git
     targetRevision: HEAD
-    path: microservices-local
+    path: stage
   destination:
     server: https://kubernetes.default.svc
     namespace: ms
-  revisionHistoryLimit: 2  
+  revisionHistoryLimit: 2
   syncPolicy:
     syncOptions:
-    - CreateNamespace=false
-    - ApplyOutOfSyncOnly=true
+      - CreateNamespace=false
+      - ApplyOutOfSyncOnly=false
     automated:
       selfHeal: true
       prune: true
