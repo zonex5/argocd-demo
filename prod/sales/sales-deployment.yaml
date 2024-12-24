@@ -44,6 +44,8 @@ spec:
                 secretKeyRef:
                   name: mq-secret
                   key: MQ_USER
+            - name: VALUE_FROM_MANIFEST
+              value: "My Super prod"
           resources:
             requests:
               memory: "128Mi"

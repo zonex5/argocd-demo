@@ -1,0 +1,9 @@
+namespace:
+  name: stage
+  environment: stage
+postgres:
+  username: cG9zdGdyZXM=
+  password: cG9zdGdyZXM=
+mq:
+  username: dXNlcg==
+  password: dXNlcg==
