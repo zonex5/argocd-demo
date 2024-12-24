@@ -45,7 +45,7 @@ spec:
                   name: mq-secret
                   key: MQ_USER
             - name: VALUE_FROM_MANIFEST
-              value: "Vasilika"
+              value: "My Super Value"
           resources:
             requests:
               memory: "128Mi"
