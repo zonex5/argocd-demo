@@ -50,16 +50,10 @@ spec:
                 secretKeyRef:
                   name: mq-secret
                   key: MQ_USER
-            #- name: VALUE_FROM_MANIFEST
-            #  valueFrom:
-            #    configMapKeyRef:
-            #      name: sales-config
-            #      key: MY_VALUE
-            - name: SPRING_APPLICATION_JSON
-              valueFrom:
-                configMapKeyRef:
-                  name: sales-config
-                  key: MY_PROPERTIES
+            - name: VALUE_FROM_MANIFEST
+              value: "My Super Value"
+            #- name: SPRING_APPLICATION_JSON
+            #  value: '{ "value.from.manifest": "new value" }'
           resources:
             requests:
               memory: "128Mi"
