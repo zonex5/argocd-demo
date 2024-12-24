@@ -43,7 +43,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: mq-secret
-                  key: MQ_USER
+                  key: MQ_PASSWORD
           resources:
             requests:
               memory: "128Mi"
