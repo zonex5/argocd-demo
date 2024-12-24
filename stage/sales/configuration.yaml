@@ -6,5 +6,5 @@ metadata:
 data:
   DATABASE_URL: "jdbc:postgresql://postgres-sales-svc.postgres.svc.cluster.local:5432/db_sales"
   RABBIT_MQ_HOST: "rabbitmq-svc.rabbitmq.svc.cluster.local"
-  MY_VALUE: "My Super Value 1"
+  MY_VALUE: "My Super Value"
   MY_PROPERTIES: '{ "value.from.manifest": "new value" }'
