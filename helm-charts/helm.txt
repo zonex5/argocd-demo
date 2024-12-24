@@ -1,3 +1,5 @@
-helm template helm-charts . -f values-stage.yaml > stage-manifest.yaml
-
 helm template common ./common -f ./common/values-stage.yaml > stage-namespace.yaml
+
+helm template books ./books -f ./common/values-prod.yaml -f ./books/values-prod.yaml > prod-deploy.yaml
+
+ helm template books-app ./books --namespace stage -f ./books/values-stage.yaml > stage-deploy.yaml

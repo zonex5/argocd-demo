@@ -1,0 +1,21 @@
+stable:
+  replicas: 1
+  image:
+    repository: localhost:6000
+    name: books-image
+    tag: stage
+
+canary:
+  enabled: false
+
+virtualService:
+  hosts:
+    - "*"   # todo add real host ex. 'stage.licensepro.com'
+  gateways:
+    - "stage-gateway"
+
+destinationRule:
+  subsets:
+    - name: stable
+      labels:
+        version: stable

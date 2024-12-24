@@ -1,0 +1,29 @@
+stable:
+  replicas: 1
+  image:
+    repository: localhost:5000
+    name: books-image
+    tag: stable
+
+canary:
+  enabled: true
+  replicas: 1
+  trafficPercentage: 20
+  image:
+    name: books-image
+    tag: canary
+
+virtualService:
+  hosts:
+    - "*"   # todo add real host ex. 'licensepro.com'
+  gateways:
+    - "prod-gateway"
+
+destinationRule:
+  subsets:
+    - name: stable
+      labels:
+        version: stable
+    - name: canary
+      labels:
+        version: canary
