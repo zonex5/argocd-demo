@@ -51,7 +51,7 @@ spec:
                   name: mq-secret
                   key: MQ_USER
             - name: VALUE_FROM_MANIFEST
-              value: "My Super Value"
+              value: "Vasilica"
             #- name: SPRING_APPLICATION_JSON
             #  value: '{ "value.from.manifest": "new value" }'
           resources:
