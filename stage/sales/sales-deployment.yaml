@@ -21,7 +21,10 @@ spec:
             - containerPort: 8080
           env:
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:postgresql://postgres-sales-svc.postgres.svc.cluster.local:5432/db_sales
+              valueFrom:
+                configMapKeyRef:
+                  name: sales-config
+                  key: DATABASE_URL
             - name: SPRING_DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -33,7 +36,10 @@ spec:
                   name: database-secret
                   key: POSTGRES_USER
             - name: SPRING_RABBITMQ_HOST
-              value: rabbitmq-svc.rabbitmq.svc.cluster.local
+              valueFrom:
+                configMapKeyRef:
+                  name: sales-config
+                  key: RABBIT_MQ_HOST
             - name: SPRING_RABBITMQ_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -45,9 +51,15 @@ spec:
                   name: mq-secret
                   key: MQ_USER
             - name: VALUE_FROM_MANIFEST
-              value: "My Super Value"
+              valueFrom:
+                configMapKeyRef:
+                  name: sales-config
+                  key: MY_VALUE
             #- name: SPRING_APPLICATION_JSON
-            #  value: '{ "value.from.manifest": "new value" }'
+            #  valueFrom:
+            #    configMapKeyRef:
+            #      name: sales-config
+            #      key: MY_PROPERTIES
           resources:
             requests:
               memory: "128Mi"
