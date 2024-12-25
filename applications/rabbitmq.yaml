@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rabbitmq-application
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/zonex5/library-argocd.git
+    targetRevision: HEAD
+    path: rabbitmq
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: rabbitmq
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    automated:
+      selfHeal: true
+      prune: true

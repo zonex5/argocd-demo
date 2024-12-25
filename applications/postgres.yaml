@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: postgres-application
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/zonex5/library-argocd.git
+    targetRevision: HEAD
+    path: postgres
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: postgres
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    - ApplyOutOfSyncOnly=true
+    automated:
+      selfHeal: true
+      prune: true

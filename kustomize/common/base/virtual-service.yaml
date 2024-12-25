@@ -2,7 +2,6 @@ apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: ms-stage-services
-  namespace: ms-stage
 spec:
   hosts:
     - "*"
@@ -17,11 +16,11 @@ spec:
             prefix: /authors
       route:
         - destination:
-            host: book-service.ms-stage.svc.cluster.local
+            host: book-service.stage.svc.cluster.local
             subset: stable
           weight: 50
         - destination:
-            host: book-service.ms-stage.svc.cluster.local
+            host: book-service.stage.svc.cluster.local
             subset: canary
           weight: 50
     # library service
@@ -32,7 +31,7 @@ spec:
             prefix: /stock
       route:
         - destination:
-            host: library-service.ms-stage.svc.cluster.local
+            host: library-service.stage.svc.cluster.local
             port:
               number: 80
     # search service
@@ -41,7 +40,7 @@ spec:
             prefix: /search
       route:
         - destination:
-            host: search-service.ms-stage.svc.cluster.local
+            host: search-service.stage.svc.cluster.local
             port:
               number: 80
     # sales service
@@ -50,6 +49,6 @@ spec:
             prefix: /sales
       route:
         - destination:
-            host: sales-service.ms-stage.svc.cluster.local
+            host: sales-service.stage.svc.cluster.local
             port:
               number: 80

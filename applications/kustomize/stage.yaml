@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: microservices-stage
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/zonex5/argocd-demo.git
+    targetRevision: HEAD
+    path: kustomize/environments/stage
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: stage
+  revisionHistoryLimit: 2
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=false
+      - ApplyOutOfSyncOnly=false
+    automated:
+      selfHeal: true
+      prune: true
