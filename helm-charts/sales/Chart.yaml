@@ -1,0 +1,5 @@
+apiVersion: v2
+name: app-sales
+description: A Helm chart for Sales microservice
+version: 0.0.1
+appVersion: 1.0.0

@@ -27,3 +27,7 @@ destinationRule:
     - name: canary
       labels:
         version: canary
+
+secrets:
+  databaseUsername: cG9zdGdyZXM=
+  databasePassword: cG9zdGdyZXM=

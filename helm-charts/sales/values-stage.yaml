@@ -1,0 +1,12 @@
+stable:
+  replicas: 1
+  image:
+    repository: localhost:5000
+    name: sales-image
+    tag: stage
+
+secrets:
+  databaseUsername: cG9zdGdyZXM=
+  databasePassword: cG9zdGdyZXM=
+  mqUsername: dXNlcg==
+  mqPassword: dXNlcg==

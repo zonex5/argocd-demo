@@ -1,55 +1,81 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-stable
+  name: books-deployment
   namespace: {{ .Release.Namespace }}
   labels:
-    app: {{ .Release.Name }}
+    app: {{.Chart.Name}}
     version: stable
 spec:
   replicas: {{ .Values.stable.replicas }}
   selector:
     matchLabels:
-      app: {{ .Release.Name }}
+      app: {{.Chart.Name}}
       version: stable
   template:
     metadata:
       labels:
-        app: {{ .Release.Name }}
+        app: {{.Chart.Name}}
         version: stable
     spec:
       containers:
-        - name: {{ .Release.Name }}
+        - name: books-service
           image: "{{ .Values.stable.image.repository }}/{{ .Values.stable.image.name }}:{{ .Values.stable.image.tag }}"
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://postgres-books-svc.postgres.svc.cluster.local:5432/db_library
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: books-secret
+                  key: databaseUsername
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: books-secret
+                  key: databasePassword
 
 {{- if and .Values.canary .Values.canary.enabled }}
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-canary
+  name: books-deployment-canary
   namespace: {{ .Release.Namespace }}
   labels:
-    app: {{ .Release.Name }}
+    app: {{.Chart.Name}}
     version: canary
 spec:
   replicas: {{ .Values.canary.replicas }}
   selector:
     matchLabels:
-      app: {{ .Release.Name }}
+      app: {{.Chart.Name}}
       version: canary
   template:
     metadata:
       labels:
-        app: {{ .Release.Name }}
+        app: {{.Chart.Name}}
         version: canary
     spec:
       containers:
-        - name: {{ .Release.Name }}
+        - name: books-service-canary
           image: "{{ .Values.stable.image.repository }}/{{ .Values.canary.image.name }}:{{ .Values.canary.image.tag }}"
           ports:
             - containerPort: 8080
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://postgres-books-svc.postgres.svc.cluster.local:5432/db_library
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: books-secret
+                  key: databaseUsername
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: books-secret
+                  key: databasePassword
 {{- end }}

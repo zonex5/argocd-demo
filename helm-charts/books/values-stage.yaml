@@ -19,3 +19,7 @@ destinationRule:
     - name: stable
       labels:
         version: stable
+
+secrets:
+  databaseUsername: cG9zdGdyZXM=
+  databasePassword: cG9zdGdyZXM=

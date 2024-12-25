@@ -1,0 +1,5 @@
+apiVersion: v2
+name: app-library
+description: A Helm chart for Library microservice
+version: 0.0.1
+appVersion: 1.0.0

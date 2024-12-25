@@ -2,10 +2,9 @@ apiVersion: v2
 name: parent-chart
 version: 0.0.1
 dependencies:
-  - name: CommonChart
-    version: 0.0.1
-    repository: "file://./common"
   - name: BookServiceChart
     version: 0.0.1
     repository: "file://./books"
-
+  - name: LibraryServiceChart
+    version: 0.0.1
+    repository: "file://./library"
