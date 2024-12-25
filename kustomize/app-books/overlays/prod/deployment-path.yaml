@@ -21,15 +21,11 @@ spec:
               cpu: "500m"
               memory: "256Mi"
           env:
-            - name: SPRING_DATASOURCE_URL
-              value: jdbc:postgresql://postgres-books-svc.postgres.svc.cluster.local:5432/db_books
             - name: SPRING_DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:
                   name: secrets-prod
-                  key: POSTGRES_USER
             - name: SPRING_DATASOURCE_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: secrets-prod
-                  key: POSTGRES_PASSWORD
