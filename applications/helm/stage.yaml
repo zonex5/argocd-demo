@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: stage
-  namespace: argocd  # Namespace, где установлен Argo CD
+  namespace: argocd
 spec:
   project: default
 
