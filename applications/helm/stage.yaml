@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: stage
+  namespace: argocd  # Namespace, где установлен Argo CD
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/zonex5/argocd-demo.git
+    targetRevision: HEAD
+    path: helm-charts
+
+    helm:
+      releaseName: stage
+      valueFiles:
+        - common/values-stage.yaml
+        - books/values-stage.yaml
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: stage
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=false

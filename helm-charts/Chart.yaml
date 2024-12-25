@@ -4,8 +4,8 @@ version: 0.0.1
 dependencies:
   - name: CommonChart
     version: 0.0.1
-    repository: "file://../common"
+    repository: "file://./common"
   - name: BookServiceChart
     version: 0.0.1
-    repository: "file://../books"
+    repository: "file://./books"
 
