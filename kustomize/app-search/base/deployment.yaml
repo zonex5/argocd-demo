@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: search-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-search
+  template:
+    metadata:
+      labels:
+        app: app-search
+    spec:
+      containers:
+        - name: search-service
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080

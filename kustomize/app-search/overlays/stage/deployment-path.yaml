@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: search-deployment
+spec:
+  template:
+    spec:
+      containers:
+        - name: search-service
+          image: localhost:5000/search-service:stage
+          resources:
+            requests:
+              memory: "128Mi"
+            limits:
+              cpu: "300m"
+              memory: "256Mi"

@@ -1,0 +1,8 @@
+resources:
+  - ../../base
+
+patches:
+  - target:
+      kind: Deployment
+      name: search-deployment
+    path: deployment-path.yaml

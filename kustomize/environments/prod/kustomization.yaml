@@ -3,6 +3,7 @@ resources:
   - ../../app-books/overlays/prod
   - ../../app-library/overlays/prod
   - ../../app-sales/overlays/prod
+  - ../../app-search/overlays/prod
 
 labels:
   - pairs:

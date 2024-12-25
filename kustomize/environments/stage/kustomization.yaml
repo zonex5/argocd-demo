@@ -3,6 +3,7 @@ resources:
   - ../../app-books/overlays/stage
   - ../../app-library/overlays/stage
   - ../../app-sales/overlays/stage
+  - ../../app-search/overlays/stage
 
 labels:
   - pairs:
