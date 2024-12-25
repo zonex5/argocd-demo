@@ -9,6 +9,10 @@ spec:
         - name: sales-service
           image: localhost:5000/sales-service:latest
           env:
+            - name: SPRING_DATASOURCE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: sales-config
             - name: SPRING_DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:
