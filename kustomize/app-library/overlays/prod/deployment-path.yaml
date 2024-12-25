@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: library-deployment
+spec:
+  template:
+    spec:
+      containers:
+        - name: library-service
+          image: localhost:5000/library-service:latest
+          env:
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: secrets-prod
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: secrets-prod
+            - name: SPRING_RABBITMQ_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: secrets-prod
+            - name: SPRING_RABBITMQ_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: secrets-prod
+          resources:
+            requests:
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "256Mi"

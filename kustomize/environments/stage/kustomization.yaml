@@ -1,6 +1,8 @@
 resources:
   - ../../common/overlays/stage
   - ../../app-books/overlays/stage
+  - ../../app-library/overlays/stage
+  - ../../app-sales/overlays/stage
 
 labels:
   - pairs:

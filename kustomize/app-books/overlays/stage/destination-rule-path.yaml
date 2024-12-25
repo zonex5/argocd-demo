@@ -1,6 +1,0 @@
-apiVersion: networking.istio.io/v1beta1
-kind: DestinationRule
-metadata:
-  name: app-books-destination-rule
-spec:
-  host: books-service.stage.svc.cluster.local

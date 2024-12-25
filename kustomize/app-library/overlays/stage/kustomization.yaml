@@ -4,5 +4,5 @@ resources:
 patches:
   - target:
       kind: Deployment
-      name: books-deployment
+      name: library-deployment
     path: deployment-path.yaml

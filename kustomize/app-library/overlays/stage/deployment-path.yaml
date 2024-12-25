@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: library-deployment
+spec:
+  template:
+    spec:
+      containers:
+        - name: library-service
+          image: localhost:5000/library-service:stage
+          imagePullPolicy: Always
+          env:
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: secrets-stage
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: secrets-stage
+            - name: SPRING_RABBITMQ_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: secrets-stage
+            - name: SPRING_RABBITMQ_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: secrets-stage
+          resources:
+            requests:
+              memory: "128Mi"
+            limits:
+              cpu: "200m"
+              memory: "256Mi"

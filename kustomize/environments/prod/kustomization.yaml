@@ -1,6 +1,8 @@
 resources:
   - ../../common/overlays/prod
   - ../../app-books/overlays/prod
+  - ../../app-library/overlays/prod
+  - ../../app-sales/overlays/prod
 
 labels:
   - pairs:

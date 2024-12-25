@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: library-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-library
+  template:
+    metadata:
+      labels:
+        app: app-library
+    spec:
+      containers:
+        - name: library-service
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://postgres-library-svc.postgres.svc.cluster.local:5432/db_library
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: POSTGRES_USER
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: POSTGRES_USER
+            - name: SPRING_RABBITMQ_HOST
+              value: rabbitmq-svc.rabbitmq.svc.cluster.local
+            - name: SPRING_RABBITMQ_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: MQ_USER
+            - name: SPRING_RABBITMQ_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: MQ_PASSWORD
