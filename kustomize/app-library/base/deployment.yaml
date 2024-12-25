@@ -27,7 +27,7 @@ spec:
             - name: SPRING_DATASOURCE_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  key: POSTGRES_USER
+                  key: POSTGRES_PASSWORD
             - name: SPRING_RABBITMQ_HOST
               value: rabbitmq-svc.rabbitmq.svc.cluster.local
             - name: SPRING_RABBITMQ_USERNAME
