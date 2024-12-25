@@ -3,6 +3,7 @@ kind: DestinationRule
 metadata:
   name: app-books-destination-rule
 spec:
+  host: books-service.prod.svc.cluster.local
   subsets:
     - name: stable
       labels:

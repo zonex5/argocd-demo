@@ -8,6 +8,10 @@ spec:
       app: app-books
       version: canary
   template:
+    metadata:
+      labels:
+        app: app-books
+        version: canary
     spec:
       containers:
         - name: book-service-canary

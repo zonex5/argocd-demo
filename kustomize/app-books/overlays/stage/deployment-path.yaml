@@ -3,14 +3,10 @@ kind: Deployment
 metadata:
   name: books-deployment
 spec:
-  selector:
-    matchLabels:
-      app: app-books
-      version: stable
   template:
     spec:
       containers:
-        - name: book-service-stable
+        - name: book-service
           image: localhost:5000/book-service:stage
           imagePullPolicy: Always
           resources:
