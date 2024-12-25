@@ -30,4 +30,4 @@ spec:
                 secretKeyRef:
                   name: secrets-prod
             - name: VALUE_FROM_MANIFEST
-              value: "My Super Value"
+              value: test

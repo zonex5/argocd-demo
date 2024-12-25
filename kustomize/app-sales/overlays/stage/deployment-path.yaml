@@ -31,4 +31,4 @@ spec:
                 secretKeyRef:
                   name: secrets-stage
             - name: VALUE_FROM_MANIFEST
-              value: 'test'
+              value: test
