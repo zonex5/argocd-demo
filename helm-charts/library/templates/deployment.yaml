@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: library-deployment
+  name: {{.Chart.Name}}-deployment
   namespace: {{ .Release.Namespace }}
 spec:
   replicas: {{ .Values.stable.replicas }}

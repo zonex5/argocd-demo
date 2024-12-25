@@ -1,0 +1,6 @@
+stable:
+  replicas: 1
+  image:
+    repository: localhost:6000
+    name: search-image
+    tag: latest

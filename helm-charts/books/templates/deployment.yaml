@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: books-deployment
+  name: {{.Chart.Name}}-deployment
   namespace: {{ .Release.Namespace }}
   labels:
     app: {{.Chart.Name}}
@@ -43,7 +43,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: books-deployment-canary
+  name: {{.Chart.Name}}-deployment-canary
   namespace: {{ .Release.Namespace }}
   labels:
     app: {{.Chart.Name}}
