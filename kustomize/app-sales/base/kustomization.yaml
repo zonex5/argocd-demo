@@ -1,3 +1,9 @@
 resources:
   - deployment.yaml
   - service.yaml
+
+configMapGenerator:
+  - name: sales-config
+    literals:
+      - DATABASE_URL="jdbc:postgresql://postgres-sales-svc.postgres.svc.cluster.local:5432/db_sales"
+      - RABBIT_MQ_HOST="rabbitmq-svc.rabbitmq.svc.cluster.local"
