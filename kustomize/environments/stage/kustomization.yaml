@@ -1,0 +1,9 @@
+resources:
+  - ../../common/overlays/stage
+  - ../../app-books/overlays/stage
+
+labels:
+  - pairs:
+      environment: stage
+
+namespace: stage

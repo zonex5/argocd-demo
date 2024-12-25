@@ -1,0 +1,13 @@
+resources:
+  - ../../base
+  - deployment-canary.yaml
+
+patches:
+  - target:
+      kind: DestinationRule
+      name: app-books-destination-rule
+    path: destination-rule-path.yaml
+  - target:
+      kind: Deployment
+      name: books-deployment
+    path: deployment-path.yaml

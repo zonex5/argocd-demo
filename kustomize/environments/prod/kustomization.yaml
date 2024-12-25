@@ -1,0 +1,9 @@
+resources:
+  - ../../common/overlays/prod
+  - ../../app-books/overlays/prod
+
+labels:
+  - pairs:
+      environment: prod
+
+namespace: prod
