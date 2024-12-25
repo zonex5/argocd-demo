@@ -3,3 +3,7 @@ helm template common ./common -f ./common/values-stage.yaml > stage-namespace.ya
 helm template books ./books -f ./common/values-prod.yaml -f ./books/values-prod.yaml > prod-deploy.yaml
 
  helm template books-app ./books --namespace stage -f ./books/values-stage.yaml > stage-deploy.yaml
+
+ helm template books-app ./umbrella-chart --namespace stage -f ./books/values-stage.yaml > stage-deploy.yaml
+
+ helm template umbrella-chart --namespace stage --values values-stage.yaml > stage-manifest.yaml
