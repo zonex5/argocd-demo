@@ -19,8 +19,8 @@ spec:
             - destination:
                 host: app-book-service.{{ .Release.Namespace }}.svc.cluster.local
                 subset: stable
-              weight: {{ if gt .Values.canaryTrafficPercentage 0 }}{{ sub 100 .Values.canaryTrafficPercentage }}{{ else }}100{{ end }}
-              {{- if gt .Values.canaryTrafficPercentage 0 }}
+              weight: {{ if gt (int .Values.canaryTrafficPercentage) 0 }}{{ sub 100 (int .Values.canaryTrafficPercentage) }}{{ else }}100{{ end }}
+              {{- if gt (int .Values.canaryTrafficPercentage) 0}}
             - destination:
                 host: app-book-service.{{ .Release.Namespace }}.svc.cluster.local
                 subset: canary
