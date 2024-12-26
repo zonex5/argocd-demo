@@ -44,3 +44,5 @@ spec:
                 secretKeyRef:
                   name: service-secret
                   key: mqPassword
+            - name: VALUE_FROM_MANIFEST
+              value: "my super value"

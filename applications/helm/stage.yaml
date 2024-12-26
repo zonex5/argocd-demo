@@ -10,13 +10,10 @@ spec:
     repoURL: https://github.com/zonex5/argocd-demo.git
     targetRevision: HEAD
     path: helm-charts
-
     helm:
       releaseName: stage
       valueFiles:
-        - common/values-stage.yaml
-        - books/values-stage.yaml
-
+        - values-stage.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: stage
