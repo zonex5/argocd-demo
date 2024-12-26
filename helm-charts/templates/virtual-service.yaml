@@ -34,7 +34,7 @@ spec:
             prefix: /stock
       route:
         - destination:
-            host: app-library-service.ms-stage.svc.cluster.local
+            host: app-library-service.{{ .Release.Namespace }}.svc.cluster.local
             port:
               number: 80
     # search service
@@ -43,7 +43,7 @@ spec:
             prefix: /search
       route:
         - destination:
-            host: app-search-service.ms-stage.svc.cluster.local
+            host: app-search-service.{{ .Release.Namespace }}.svc.cluster.local
             port:
               number: 80
     # sales service
@@ -52,6 +52,6 @@ spec:
             prefix: /sales
       route:
         - destination:
-            host: app-sales-service.ms-stage.svc.cluster.local
+            host: app-sales-service.{{ .Release.Namespace }}.svc.cluster.local
             port:
               number: 80
