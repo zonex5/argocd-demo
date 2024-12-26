@@ -15,17 +15,21 @@ spec:
             prefix: /books
         - uri:
             prefix: /authors
-        - route:
-            - destination:
-                host: app-books-service.{{ .Release.Namespace }}.svc.cluster.local
-                subset: stable
-              weight: {{ if gt (int .Values.canaryTrafficPercentage) 0 }}{{ sub 100 (int .Values.canaryTrafficPercentage) }}{{ else }}100{{ end }}
-              {{- if gt (int .Values.canaryTrafficPercentage) 0}}
-            - destination:
-                host: app-books-service.{{ .Release.Namespace }}.svc.cluster.local
-                subset: canary
-              weight: {{ .Values.canaryTrafficPercentage }}
-              {{- end }}
+      route:
+        - destination:
+            host: app-books-service.{{ .Release.Namespace }}.svc.cluster.local
+            port:
+              number: 80
+          {{- if gt (int .Values.canaryTrafficPercentage) 0}}
+            subset: stable
+          weight: {{ if gt (int .Values.canaryTrafficPercentage) 0 }}{{ sub 100 (int .Values.canaryTrafficPercentage) }}{{ else }}100{{ end }}
+        - destination:
+            host: app-books-service.{{ .Release.Namespace }}.svc.cluster.local
+            port:
+              number: 80
+            subset: canary
+          weight: {{ .Values.canaryTrafficPercentage }}
+          {{- end }}
     # library service
     - match:
         - uri:
