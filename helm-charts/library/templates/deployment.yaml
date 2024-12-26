@@ -25,22 +25,22 @@ spec:
             - name: SPRING_DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: library-secret
+                  name: service-secret
                   key: databaseUsername
             - name: SPRING_DATASOURCE_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: library-secret
+                  name: service-secret
                   key: databasePassword
             - name: SPRING_RABBITMQ_HOST
               value: rabbitmq-svc.rabbitmq.svc.cluster.local
             - name: SPRING_RABBITMQ_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: library-secret
+                  name: service-secret
                   key: mqUsername
             - name: SPRING_RABBITMQ_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: library-secret
+                  name: service-secret
                   key: mqPassword

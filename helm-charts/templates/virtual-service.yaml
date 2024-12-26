@@ -1,0 +1,57 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ .Release.Namespace }}-virtual-service
+  namespace: {{ .Release.Namespace }}
+spec:
+  hosts:
+  {{- toYaml .Values.virtualService.hosts | nindent 2 }}
+  gateways:
+  {{- toYaml .Values.virtualService.gateways | nindent 2 }}
+  http:
+    # book service
+    - match:
+        - uri:
+            prefix: /books
+        - uri:
+            prefix: /authors
+        - route:
+            - destination:
+                host: app-book-service.{{ .Release.Namespace }}.svc.cluster.local
+                subset: stable
+              weight: {{ if .Values.app_books.canary.enabled }}{{ sub 100 .Values.app_books.canary.trafficPercentage }}{{ else }}100{{ end }}
+              {{- if .Values.app_books.canary.enabled }}
+            - destination:
+                host: app-book-service.{{ .Release.Namespace }}.svc.cluster.local
+                subset: canary
+              weight: {{ .Values.app_books.canary.trafficPercentage }}
+              {{- end }}
+    # library service
+    - match:
+        - uri:
+            prefix: /libraries
+        - uri:
+            prefix: /stock
+      route:
+        - destination:
+            host: app-library-service.ms-stage.svc.cluster.local
+            port:
+              number: 80
+    # search service
+    - match:
+        - uri:
+            prefix: /search
+      route:
+        - destination:
+            host: app-search-service.ms-stage.svc.cluster.local
+            port:
+              number: 80
+    # sales service
+    - match:
+        - uri:
+            prefix: /sales
+      route:
+        - destination:
+            host: app-sales-service.ms-stage.svc.cluster.local
+            port:
+              number: 80

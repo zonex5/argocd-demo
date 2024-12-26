@@ -30,12 +30,12 @@ spec:
             - name: SPRING_DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: books-secret
+                  name: service-secret
                   key: databaseUsername
             - name: SPRING_DATASOURCE_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: books-secret
+                  name: service-secret
                   key: databasePassword
 
 {{- if and .Values.canary .Values.canary.enabled }}
@@ -71,11 +71,11 @@ spec:
             - name: SPRING_DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: books-secret
+                  name: service-secret
                   key: databaseUsername
             - name: SPRING_DATASOURCE_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: books-secret
+                  name: service-secret
                   key: databasePassword
 {{- end }}

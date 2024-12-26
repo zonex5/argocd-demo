@@ -8,12 +8,6 @@ stable:
 canary:
   enabled: false
 
-virtualService:
-  hosts:
-    - "*"   # todo add real host ex. 'stage.licensepro.com'
-  gateways:
-    - "stage-gateway"
-
 destinationRule:
   subsets:
     - name: stable

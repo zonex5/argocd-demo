@@ -5,7 +5,13 @@ mq:
   username: dXNlcg==
   password: dXNlcg==
 
-app-books:
+virtualService:
+  hosts:
+    - "*"   # todo add real host ex. 'stage.licensepro.com'
+  gateways:
+    - "stage-gateway"
+
+app_books:
   stable:
     replicas: 1
     image:
@@ -32,9 +38,6 @@ app-books:
       - name: canary
         labels:
           version: canary
-  secrets:
-    databaseUsername: cG9zdGdyZXM=
-    databasePassword: cG9zdGdyZXM=
 
 app-library:
   stable:
@@ -43,11 +46,6 @@ app-library:
       repository: localhost:6000
       name: library-image
       tag: latest
-  secrets:
-    databaseUsername: cG9zdGdyZXM=
-    databasePassword: cG9zdGdyZXM=
-    mqUsername: dXNlcg==
-    mqPassword: dXNlcg==
 
 app-sales:
   stable:
@@ -56,11 +54,6 @@ app-sales:
       repository: localhost:6000
       name: sales-image
       tag: latest
-  secrets:
-    databaseUsername: cG9zdGdyZXM=
-    databasePassword: cG9zdGdyZXM=
-    mqUsername: dXNlcg==
-    mqPassword: dXNlcg==
 
 app-search:
   stable:
