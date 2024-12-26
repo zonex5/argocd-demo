@@ -11,6 +11,8 @@ virtualService:
   gateways:
     - "stage-gateway"
 
+canaryTrafficPercentage: 0
+
 app_books:
   stable:
     replicas: 1

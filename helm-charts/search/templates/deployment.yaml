@@ -14,7 +14,7 @@ spec:
         app: {{.Chart.Name}}
     spec:
       containers:
-        - name: search-service
+        - name: {{.Chart.Name}}-service
           image: "{{ .Values.stable.image.repository }}/{{ .Values.stable.image.name }}:{{ .Values.stable.image.tag }}"
           imagePullPolicy: Always
           ports:

@@ -19,12 +19,12 @@ spec:
             - destination:
                 host: app-book-service.{{ .Release.Namespace }}.svc.cluster.local
                 subset: stable
-              weight: {{ if .Values.app_books.canary.enabled }}{{ sub 100 .Values.app_books.canary.trafficPercentage }}{{ else }}100{{ end }}
-              {{- if .Values.app_books.canary.enabled }}
+              weight: {{ if gt .Values.canaryTrafficPercentage 0 }}{{ sub 100 .Values.canaryTrafficPercentage }}{{ else }}100{{ end }}
+              {{- if gt .Values.canaryTrafficPercentage 0 }}
             - destination:
                 host: app-book-service.{{ .Release.Namespace }}.svc.cluster.local
                 subset: canary
-              weight: {{ .Values.app_books.canary.trafficPercentage }}
+              weight: {{ .Values.canaryTrafficPercentage }}
               {{- end }}
     # library service
     - match:

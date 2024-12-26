@@ -1,10 +1,10 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
-  name: app-books-{{ .Release.Namespace }}-destination-rule
+  name: {{.Chart.Name}}-{{ .Release.Namespace }}-destination-rule
   namespace: {{ .Release.Namespace }}
 spec:
-  host: book-service.{{ .Release.Namespace }}.svc.cluster.local
+  host: {{.Chart.Name}}.{{ .Release.Namespace }}.svc.cluster.local
   subsets:
   {{- range .Values.destinationRule.subsets }}
     - name: {{ .name }}

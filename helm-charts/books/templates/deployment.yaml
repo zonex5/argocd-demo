@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app-books-deployment
+  name: {{.Chart.Name}}-deployment
   namespace: {{ .Release.Namespace }}
   labels:
     app: {{.Chart.Name}}
@@ -19,7 +19,7 @@ spec:
         version: stable
     spec:
       containers:
-        - name: books-service
+        - name: {{.Chart.Name}}-service
           image: "{{ .Values.stable.image.repository }}/{{ .Values.stable.image.name }}:{{ .Values.stable.image.tag }}"
           imagePullPolicy: Always
           ports:
@@ -43,7 +43,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app-books-deployment-canary
+  name: {{.Chart.Name}}-deployment-canary
   namespace: {{ .Release.Namespace }}
   labels:
     app: {{.Chart.Name}}
@@ -61,7 +61,7 @@ spec:
         version: canary
     spec:
       containers:
-        - name: books-service-canary
+        - name: {{.Chart.Name}}-service-canary
           image: "{{ .Values.stable.image.repository }}/{{ .Values.canary.image.name }}:{{ .Values.canary.image.tag }}"
           ports:
             - containerPort: 8080
