@@ -23,7 +23,7 @@ app_books:
     replicas: 1
     trafficPercentage: 20
     image:
-      name: books-image
+      name: book-service
       tag: canary
   virtualService:
     hosts:
@@ -44,7 +44,7 @@ app-library:
     replicas: 1
     image:
       repository: localhost:6000
-      name: library-image
+      name: library-service
       tag: latest
 
 app-sales:
@@ -52,7 +52,7 @@ app-sales:
     replicas: 1
     image:
       repository: localhost:6000
-      name: sales-image
+      name: sales-service
       tag: latest
 
 app-search:
@@ -60,5 +60,5 @@ app-search:
     replicas: 1
     image:
       repository: localhost:6000
-      name: search-image
+      name: search-service
       tag: latest
