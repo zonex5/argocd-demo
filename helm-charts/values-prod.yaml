@@ -17,7 +17,7 @@ app_books:
     image:
       repository: localhost:5000
       name: books-image
-      tag: stable
+      tag: latest
   canary:
     enabled: true
     replicas: 1
