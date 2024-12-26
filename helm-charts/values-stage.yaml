@@ -16,7 +16,7 @@ app_books:
     replicas: 1
     image:
       repository: localhost:5000
-      name: books-image
+      name: book-service
       tag: stage
   canary:
     enabled: false
@@ -36,7 +36,7 @@ app-library:
     replicas: 1
     image:
       repository: localhost:5000
-      name: library-image
+      name: library-service
       tag: stage
 
 app-sales:
@@ -44,7 +44,7 @@ app-sales:
     replicas: 1
     image:
       repository: localhost:5000
-      name: sales-image
+      name: sales-service
       tag: stage
 
 app-search:
@@ -52,5 +52,5 @@ app-search:
     replicas: 1
     image:
       repository: localhost:6000
-      name: search-image
+      name: search-service
       tag: stage
