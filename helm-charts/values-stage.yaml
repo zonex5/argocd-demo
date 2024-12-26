@@ -51,6 +51,6 @@ app-search:
   stable:
     replicas: 1
     image:
-      repository: localhost:6000
+      repository: localhost:5000
       name: search-service
       tag: stage
