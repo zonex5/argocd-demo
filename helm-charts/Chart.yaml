@@ -2,9 +2,15 @@ apiVersion: v2
 name: parent-chart
 version: 0.0.1
 dependencies:
-  - name: BookServiceChart
+  - name: app-books
     version: 0.0.1
     repository: "file://./books"
-  - name: LibraryServiceChart
+  - name: app-library
     version: 0.0.1
     repository: "file://./library"
+  - name: app-sales
+    version: 0.0.1
+    repository: "file://./sales"
+  - name: app-search
+    version: 0.0.1
+    repository: "file://./search"

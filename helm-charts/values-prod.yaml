@@ -4,3 +4,68 @@ postgres:
 mq:
   username: dXNlcg==
   password: dXNlcg==
+
+app-books:
+  stable:
+    replicas: 1
+    image:
+      repository: localhost:5000
+      name: books-image
+      tag: stable
+  canary:
+    enabled: true
+    replicas: 1
+    trafficPercentage: 20
+    image:
+      name: books-image
+      tag: canary
+  virtualService:
+    hosts:
+      - "*"   # todo add real host ex. 'licensepro.com'
+    gateways:
+      - "prod-gateway"
+  destinationRule:
+    subsets:
+      - name: stable
+        labels:
+          version: stable
+      - name: canary
+        labels:
+          version: canary
+  secrets:
+    databaseUsername: cG9zdGdyZXM=
+    databasePassword: cG9zdGdyZXM=
+
+app-library:
+  stable:
+    replicas: 1
+    image:
+      repository: localhost:6000
+      name: library-image
+      tag: latest
+  secrets:
+    databaseUsername: cG9zdGdyZXM=
+    databasePassword: cG9zdGdyZXM=
+    mqUsername: dXNlcg==
+    mqPassword: dXNlcg==
+
+app-sales:
+  stable:
+    replicas: 1
+    image:
+      repository: localhost:6000
+      name: sales-image
+      tag: latest
+  secrets:
+    databaseUsername: cG9zdGdyZXM=
+    databasePassword: cG9zdGdyZXM=
+    mqUsername: dXNlcg==
+    mqPassword: dXNlcg==
+
+app-search:
+  stable:
+    replicas: 1
+    image:
+      repository: localhost:6000
+      name: search-image
+      tag: latest

@@ -1,3 +1,5 @@
-helm template app ./library --namespace stage -f ./library/values-stage.yaml > stage-deploy.yaml
+helm template app ./ --namespace stage -f ./library/values-stage.yaml > stage-deploy.yaml
 
 helm template umbrella-chart --namespace stage --values values-stage.yaml > stage-manifest.yaml
+
+helm template app ./ --namespace stage --values values-stage.yaml --values ./sales/values-stage.yaml > stage-deploy.yaml
